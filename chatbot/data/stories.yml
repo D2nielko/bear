@@ -1,0 +1,54 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: compliment and hug
+  steps:
+    - intent: give_compliment
+    - action: utter_give_compliment
+    - intent: hug
+    - action: utter_hug
+
+- story: remember name
+  steps:
+    - intent: greet
+    - action: utter_ask_name
+    - intent: inform
+      entities:
+        - name: "John"
+    - action: utter_remember_name
+
+- story: collect user information
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - action: user_info_form
+    - active_loop: user_info_form
+    - action: utter_thank_you
